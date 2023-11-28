@@ -11,7 +11,7 @@ public class AnimatorManager : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }

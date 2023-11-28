@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,12 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        animatorManager = GetComponent<AnimatorManager>();  
+        animatorManager = GetComponent<AnimatorManager>();
+        Debug.Log(animatorManager);
+
+        //horizontalInput = 0f;  
+        //verticalInput = 0f;
+        //moveAmount = 0f;
     }
 
     private void OnEnable()
@@ -29,6 +35,7 @@ public class InputManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
 
+            
             playerControls.PlayerMovment.Movement.performed += i => movmentInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovment.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
         }
@@ -51,8 +58,12 @@ public class InputManager : MonoBehaviour
         verticalInput = movmentInput.y;
         horizontalInput = movmentInput.x;
 
+        Debug.Log("Horizontal Input: " + horizontalInput);
+        Debug.Log("Vertical Input: " + verticalInput);
+
         cameraInputX = cameraInput.x;
         cameraInputY = cameraInput.y;
+        
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         animatorManager.UpdateAnimatorValues(0, moveAmount);

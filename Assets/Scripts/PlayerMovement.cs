@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,10 +61,7 @@ public class PlayerMovment : MonoBehaviour
 
         Vector3 movmentVelocity = moveDirection;
         playerRigidBody.velocity = movmentVelocity;
-        Debug.Log("Vertical Input: " + inputManager.verticalInput);
-        Debug.Log("Horizontal Input: " + inputManager.horizontalInput);
     }
-
 
 
 
@@ -93,7 +91,7 @@ public class PlayerMovment : MonoBehaviour
 
         if (!isGrounded)
         {
-            if(!playerManager.isInteracting)
+            if (!playerManager.isInteracting)
             {
                 animatorManager.PlayTargetAnimation("Falling", true);
             }
@@ -104,20 +102,21 @@ public class PlayerMovment : MonoBehaviour
         }
 
         if (Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, maxDistance, groundLayer))
-            {
-            if(!isGrounded && !playerManager.isInteracting)
+        {
+            if (!isGrounded && !playerManager.isInteracting)
             {
                 animatorManager.PlayTargetAnimation("Landing", true);
             }
 
             inAirTimer = 0;
             isGrounded = true;
+            Debug.Log("if stavek");
         }
 
         else
         {
             isGrounded = false;
-
+            
         }
     }
 }
