@@ -11,7 +11,7 @@ public class PlayerMovment : MonoBehaviour
 
     Vector3 moveDirection;
     Transform cameraObject;
-    Rigidbody playerRigidBody;
+    public Rigidbody playerRigidBody;
 
     [Header("Falling")]
     public float inAirTimer;
@@ -22,12 +22,18 @@ public class PlayerMovment : MonoBehaviour
 
     [Header("Movment Flags")]
     public bool isGrounded;
-
+    public bool isJumping;
 
     [Header("Movment Speeds")]
     public float movementSpeed = 7;
     public float rotationSpeed = 15;
-         
+
+    [Header("Jump Speeds")]
+    public float jumpHeight = 3;
+    public float gravityIntensity = -15;  //Vrednost mora vedno biti negativna
+
+
+
 
     public void Awake()
     {
@@ -52,6 +58,9 @@ public class PlayerMovment : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (isJumping)
+            return;
+
         moveDirection = cameraObject.forward * inputManager.verticalInput;
         moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
         moveDirection.Normalize();
@@ -62,10 +71,11 @@ public class PlayerMovment : MonoBehaviour
         playerRigidBody.velocity = movmentVelocity;
     }
 
-
-
     private void HandleRotation()
     {
+        if (isJumping)
+            return;
+
         Vector3 targetDirection = Vector3.zero;
 
         targetDirection = cameraObject.forward * inputManager.verticalInput;
@@ -73,7 +83,7 @@ public class PlayerMovment : MonoBehaviour
         targetDirection.Normalize();
         targetDirection.y = 0;
 
-        if(targetDirection == Vector3.zero)
+        if (targetDirection == Vector3.zero)
             targetDirection = transform.forward;
 
         Quaternion tartgetRotation = Quaternion.LookRotation(targetDirection);
@@ -86,9 +96,11 @@ public class PlayerMovment : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 rayCastOrigin = transform.position;
+        Vector3 targetPosition;
         rayCastOrigin.y = rayCastOrigin.y + rayCastHeightOffSet;
+        targetPosition = transform.position;
 
-        if (!isGrounded)
+        if (!isGrounded && !isJumping)
         {
             if (!playerManager.isInteracting)
             {
@@ -105,17 +117,70 @@ public class PlayerMovment : MonoBehaviour
             if (!isGrounded && !playerManager.isInteracting)
             {
                 animatorManager.PlayTargetAnimation("Landing", true);
+
+                Vector3 landingPosition = hit.point + Vector3.up * rayCastHeightOffSet;
+                transform.position = landingPosition;
+
+                if (Mathf.Abs(landingPosition.y - transform.position.y) > 0.2f)
+                {
+                    landingPosition.y = transform.position.y;
+                }
+
+                transform.position = landingPosition;
+
+                playerRigidBody.velocity = new Vector3(playerRigidBody.velocity.x, 0f, playerRigidBody.velocity.z);
+
             }
 
+            //Vector3 rayCastHitPoints = hit.point;
+            //targetPosition.y = rayCastHitPoints.y;
             inAirTimer = 0;
             isGrounded = true;
-            Debug.Log("if stavek");
         }
 
         else
         {
             isGrounded = false;
-            
+
+        }
+
+        if (isGrounded && !isJumping)
+        {
+            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+            {
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
+            }
+            else
+            {
+                transform.position = targetPosition;
+            }
         }
     }
+
+    public void HandleJumping()
+    {
+        if (isGrounded)
+        {
+            animatorManager.animator.SetBool("isJumping", true);
+            animatorManager.PlayTargetAnimation("Jumping", false);
+            Debug.Log("Skace");
+
+            float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
+            Vector3 playerVelocity = moveDirection;
+            playerVelocity.y = jumpingVelocity;
+            playerRigidBody.velocity = playerVelocity;
+        }
+    }
+
+    public void HandleDodge()
+    {
+        if (playerManager.isInteracting)
+            return;
+
+
+        animatorManager.PlayTargetAnimation("Dodge", true, true);
+        //TOGGLE INVULNERABLE BOOL FOR NO HP DAMAGE DURING ANIMATION
+    }
 }
+
+

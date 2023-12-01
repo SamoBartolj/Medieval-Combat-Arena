@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    Animator animator;
+    PlayerManager playerManager;
+    PlayerMovment playerMovment;
+    public Animator animator;
     int horizontal;
     int vertical;
+    
 
 
     private void Awake()
     {
         animator = this.GetComponent<Animator>();
+        playerManager = this.GetComponent<PlayerManager>();
+        playerMovment = this.GetComponent<PlayerMovment>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
 
-    public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
+    public void PlayTargetAnimation(string targetAnimation, bool isInteracting, bool useRootMotion = false)
     {
         animator.SetBool("isInteracting", isInteracting);
+        animator.SetBool("isUsingRootMotion", useRootMotion);
         animator.CrossFade(targetAnimation, 0.2f);
     }
 
@@ -76,5 +82,17 @@ public class AnimatorManager : MonoBehaviour
 
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
+    }
+
+    private void OnAnimatorMove()
+    {
+        if (playerManager.isUsingRootMotion)
+        {
+            playerMovment.playerRigidBody.drag = 0;
+            Vector3 deltaPosition = animator.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / Time.deltaTime;
+            playerMovment.playerRigidBody.velocity = velocity;
+        }
     }
 }

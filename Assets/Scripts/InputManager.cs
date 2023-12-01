@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class InputManager : MonoBehaviour
 {
+    PlayerMovment playerMovment;
     PlayerControls playerControls;
     AnimatorManager animatorManager;
 
@@ -15,18 +17,19 @@ public class InputManager : MonoBehaviour
     public float cameraInputY;
 
 
-    private float moveAmount;
+    public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
+
+    public bool jump_Input;
+    public bool dodge_Input;
 
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
-        Debug.Log(animatorManager);
+        playerMovment = GetComponent<PlayerMovment>();
 
-        //horizontalInput = 0f;  
-        //verticalInput = 0f;
-        //moveAmount = 0f;
+
     }
 
     private void OnEnable()
@@ -35,9 +38,11 @@ public class InputManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
 
-            
+
             playerControls.PlayerMovment.Movement.performed += i => movmentInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovment.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
+            playerControls.PlayerActions.Dodge.performed += i => dodge_Input = true;
         }
 
         playerControls.Enable();
@@ -51,26 +56,43 @@ public class InputManager : MonoBehaviour
     public void HandleAllInputs()
     {
         HandleMovmentInput();
+        HandleJumpingInput();
+        HandleDodgeInput();
     }
+
 
     private void HandleMovmentInput()
     {
         verticalInput = movmentInput.y;
         horizontalInput = movmentInput.x;
 
-        Debug.Log("Horizontal Input: " + horizontalInput);
-        Debug.Log("Vertical Input: " + verticalInput);
-
         cameraInputX = cameraInput.x;
         cameraInputY = cameraInput.y;
-        
+
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         animatorManager.UpdateAnimatorValues(0, moveAmount);
     }
 
+    private void HandleJumpingInput()
+    {
+        if (jump_Input)
+        {
+            jump_Input = false;
+            playerMovment.HandleJumping();
+        }
+    }
 
+    private void HandleDodgeInput()
+    {
+        if (dodge_Input)
+        {
+            dodge_Input = false;
+            playerMovment. HandleDodge ();
+        }
 
+    }
 }
+
 
 
