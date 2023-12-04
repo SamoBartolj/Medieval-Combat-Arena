@@ -1,3 +1,4 @@
+using SO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ public class InputManager : MonoBehaviour
     PlayerMovment playerMovment;
     PlayerControls playerControls;
     AnimatorManager animatorManager;
+    PlayerAttacker playerAttacker;
+    PlayerInventory playerInventory;
 
     public Vector2 movmentInput;
     public Vector2 cameraInput;
@@ -24,12 +27,20 @@ public class InputManager : MonoBehaviour
     public bool jump_Input;
     public bool dodge_Input;
 
+    public bool lightAttack_input;
+    public bool heavyAttack_input;
+
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         playerMovment = GetComponent<PlayerMovment>();
+        playerAttacker = GetComponent<PlayerAttacker>();
+        playerInventory = GetComponent<PlayerInventory>();
 
-
+        if (playerAttacker == null)
+        {
+            Debug.LogError("PlayerAttacker component not found on the same GameObject as InputManager.");
+        }
     }
 
     private void OnEnable()
@@ -43,6 +54,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovment.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
             playerControls.PlayerActions.Dodge.performed += i => dodge_Input = true;
+            playerControls.PlayerActions.LightAttack.performed += i => lightAttack_input = true;
+            playerControls.PlayerActions.HeavyAttack.performed += i => heavyAttack_input = true;
         }
 
         playerControls.Enable();
@@ -58,7 +71,7 @@ public class InputManager : MonoBehaviour
         HandleMovmentInput();
         HandleJumpingInput();
         HandleDodgeInput();
-    }
+        HandleAttackInput();    }
 
 
     private void HandleMovmentInput()
@@ -91,6 +104,19 @@ public class InputManager : MonoBehaviour
             playerMovment. HandleDodge ();
         }
 
+    }
+
+    private void HandleAttackInput()
+    {
+        if(lightAttack_input)
+        {
+            playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+        }
+
+        if (heavyAttack_input)
+        {
+            playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+        }
     }
 }
 

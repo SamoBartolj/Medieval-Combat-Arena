@@ -35,6 +35,9 @@ public class PlayerManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        inputManager.heavyAttack_input = false;
+        inputManager.lightAttack_input = false;
+
         cameraManager.HandleAllCameraMovement();
 
         isInteracting = animator.GetBool("isInteracting");
