@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SO
-{
+
     public class PlayerAttacker : MonoBehaviour
     {
 
@@ -25,5 +24,5 @@ namespace SO
             animatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
         }
     }
-}
+
 

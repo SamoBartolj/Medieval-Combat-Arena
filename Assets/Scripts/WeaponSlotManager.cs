@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SO
-{
+
     public class WeaponSlotManager : MonoBehaviour
     {
         WeaponHolderSlot leftHandSlot;
@@ -40,6 +39,4 @@ namespace SO
         }
     }
 
-    
-}
 

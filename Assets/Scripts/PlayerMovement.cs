@@ -59,16 +59,23 @@ public class PlayerMovment : MonoBehaviour
     private void HandleMovement()
     {
         if (isJumping)
-            return;
+        {
+            // Limit forward movement during jumps
+            moveDirection = Vector3.zero;
+            moveDirection.y = playerRigidBody.velocity.y; // Maintain the current vertical velocity
+        }
+        else
+        {
+            // Normal movement when not jumping
+            moveDirection = cameraObject.forward * inputManager.verticalInput;
+            moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+            moveDirection *= movementSpeed;
+        }
 
-        moveDirection = cameraObject.forward * inputManager.verticalInput;
-        moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
-        moveDirection.Normalize();
-        moveDirection.y = 0;
-        moveDirection *= movementSpeed;
-
-        Vector3 movmentVelocity = moveDirection;
-        playerRigidBody.velocity = movmentVelocity;
+        Vector3 movementVelocity = moveDirection;
+        playerRigidBody.velocity = movementVelocity;
     }
 
     private void HandleRotation()
@@ -132,8 +139,8 @@ public class PlayerMovment : MonoBehaviour
 
             }
 
-            //Vector3 rayCastHitPoints = hit.point;
-            //targetPosition.y = rayCastHitPoints.y;
+            Vector3 rayCastHitPoints = hit.point;
+            targetPosition.y = rayCastHitPoints.y;
             inAirTimer = 0;
             isGrounded = true;
         }

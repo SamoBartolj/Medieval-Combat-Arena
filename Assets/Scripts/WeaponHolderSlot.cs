@@ -3,65 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SO
+public class WeaponHolderSlot : MonoBehaviour
 {
-    public class WeaponHolderSlot : MonoBehaviour
+    public Transform parentOverride;
+    public bool isLeftHandSlot;
+    public bool isRightHandSlot;
+
+    public GameObject currentWeaponModel;
+
+
+    public void UnloadWeapon()
     {
-        public Transform parentOverride;
-        public bool isLeftHandSlot;
-        public bool isRightHandSlot;
-
-        public GameObject currentWeaponModel;
-
-
-        public void UnloadWeapon()
+        if (currentWeaponModel != null)
         {
-            if (currentWeaponModel != null)
-            {
-                currentWeaponModel.SetActive(false);
-            }      
+            currentWeaponModel.SetActive(false);
+        }
+    }
+
+    public void UnloadWeaponAndDestory()
+    {
+        if (currentWeaponModel != null)
+        {
+            Destroy(currentWeaponModel);
+        }
+    }
+
+
+    public void LoadWeaponModel(WeaponItem weaponItem)
+    {
+        UnloadWeaponAndDestory();
+
+        if (weaponItem == null)
+        {
+            UnloadWeapon();
+            return;
         }
 
-        public void UnloadWeaponAndDestory()
+        GameObject model = Instantiate(weaponItem.modelPrefab) as GameObject;
+
+
+        if (model != null)
         {
-            if (currentWeaponModel != null)
+            if (parentOverride != null)
             {
-                Destroy(currentWeaponModel);
+                model.transform.parent = parentOverride;
             }
+            else
+            {
+                model.transform.parent = transform;
+            }
+
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localRotation = Quaternion.identity;
+            model.transform.localScale = Vector3.one;
         }
 
-
-        public void LoadWeaponModel(WeaponItem weaponItem)
-        {
-            UnloadWeaponAndDestory();
-
-            if(weaponItem == null)
-            {
-                UnloadWeapon();
-                return;
-            }
-
-            GameObject model = Instantiate(weaponItem.modelPrefab) as GameObject;
-
-
-            if(model != null)
-            {
-                if(parentOverride != null)
-                {
-                    model.transform.parent = parentOverride;
-                }
-                else
-                {
-                    model.transform.parent = transform;
-                }
-
-                model.transform.localPosition = Vector3.zero;
-                model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;
-            }
-
-            currentWeaponModel = model;
-        }
+        currentWeaponModel = model;
     }
 }
 
