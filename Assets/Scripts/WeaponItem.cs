@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+namespace SO
+{
     [CreateAssetMenu(menuName = "Weapon Item")]
     public class WeaponItem : Item
     {
@@ -13,5 +14,5 @@ using UnityEngine;
         public string OH_Light_Attack_1;
         public string OH_Heavy_Attack_1;
     }
-
+}
 

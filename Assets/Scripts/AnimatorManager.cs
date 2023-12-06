@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimatorManager : MonoBehaviour
 {
     PlayerManager playerManager;
-    PlayerMovment playerMovment;
+    PlayerMovement playerMovement;
     public Animator animator;
     int horizontal;
     int vertical;
@@ -16,7 +16,7 @@ public class AnimatorManager : MonoBehaviour
     {
         animator = this.GetComponent<Animator>();
         playerManager = this.GetComponent<PlayerManager>();
-        playerMovment = this.GetComponent<PlayerMovment>();
+        playerMovement = this.GetComponent<PlayerMovement>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
@@ -88,11 +88,11 @@ public class AnimatorManager : MonoBehaviour
     {
         if (playerManager.isUsingRootMotion)
         {
-            playerMovment.playerRigidBody.drag = 0;
+            playerMovement.playerRigidBody.drag = 0;
             Vector3 deltaPosition = animator.deltaPosition;
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / Time.deltaTime;
-            playerMovment.playerRigidBody.velocity = velocity;
+            playerMovement.playerRigidBody.velocity = velocity;
         }
     }
 }

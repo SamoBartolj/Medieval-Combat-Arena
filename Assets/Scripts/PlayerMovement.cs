@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public void HandleMovement()
     {
         if (isJumping)
-
+<<<<<<< HEAD
         {
             moveDirection = new Vector3(0, playerRigidBody.velocity.y, 0);
         }
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerRigidBody.velocity = moveDirection;
-
+=======
             return;
 
         moveDirection = cameraObject.forward * inputManager.verticalInput;

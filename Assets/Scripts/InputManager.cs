@@ -1,3 +1,4 @@
+using SO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine.Windows;
 
 public class InputManager : MonoBehaviour
 {
-    PlayerMovment playerMovment;
+    PlayerMovement playerMovement;
     PlayerControls playerControls;
     AnimatorManager animatorManager;
     PlayerAttacker playerAttacker;
@@ -32,7 +33,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
-        playerMovment = GetComponent<PlayerMovment>();
+        playerMovement = GetComponent<PlayerMovement>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
 
@@ -91,7 +92,7 @@ public class InputManager : MonoBehaviour
         if (jump_Input)
         {
             jump_Input = false;
-            playerMovment.HandleJumping();
+            playerMovement.HandleJumping();
         }
     }
 
@@ -100,7 +101,7 @@ public class InputManager : MonoBehaviour
         if (dodge_Input)
         {
             dodge_Input = false;
-            playerMovment. HandleDodge ();
+            playerMovement. HandleDodge ();
         }
 
     }

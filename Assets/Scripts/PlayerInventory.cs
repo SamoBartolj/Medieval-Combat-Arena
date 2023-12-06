@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+namespace SO
+{
     public class PlayerInventory : MonoBehaviour
     {
         WeaponSlotManager weaponSlotManager;
@@ -21,5 +23,5 @@ using UnityEngine;
             weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
         }
     }
-
+}
 
