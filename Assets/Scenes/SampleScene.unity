@@ -2663,7 +2663,7 @@ MonoBehaviour:
   inAirTimer: 0
   leapingVelocity: 2
   fallingVelocity: 35
-  rayCastHeightOffSet: 0.4
+  rayCastHeightOffSet: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1

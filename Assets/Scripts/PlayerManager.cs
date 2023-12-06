@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerMovement.HandleAllMovement();
+        playerMovement.HandleAllMovment();
     }
 
     private void LateUpdate()
