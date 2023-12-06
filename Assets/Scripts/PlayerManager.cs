@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     Animator animator;
     InputManager inputManager;
     CameraManager cameraManager;
-    PlayerMovment playerMovment;
+    PlayerMovement playerMovement;
 
 
 
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponent<Animator>();
         inputManager = GetComponent<InputManager>();
         cameraManager = FindObjectOfType<CameraManager>();
-        playerMovment = GetComponent<PlayerMovment>();  
+        playerMovement = GetComponent<PlayerMovement>();  
     }
 
     private void Update()
@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerMovment.HandleAllMovment();
+        playerMovement.HandleAllMovement();
     }
 
     private void LateUpdate()
@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         isInteracting = animator.GetBool("isInteracting");
         isUsingRootMotion = animator.GetBool("isUsingRootMotion");
 
-        playerMovment.isJumping = animator.GetBool("isJumping");
-        animator.SetBool("isGrounded", playerMovment.isGrounded); 
+        playerMovement.isJumping = animator.GetBool("isJumping");
+        animator.SetBool("isGrounded", playerMovement.isGrounded); 
     }
 }
