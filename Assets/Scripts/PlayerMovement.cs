@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movment Flags")]
     public bool isGrounded;
     public bool isJumping;
+    public bool isInvincible;
 
     [Header("Movment Speeds")]
     public float movementSpeed = 7;
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Awake()
     {
+
         playerManager = GetComponent<PlayerManager>();
         animatorManager = GetComponent<AnimatorManager>();
         inputManager = GetComponent<InputManager>();
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
             return;
 
 
-        animatorManager.PlayTargetAnimation("Dodge", true, true);
-        //TOGGLE INVULNERABLE BOOL FOR NO HP DAMAGE DURING ANIMATION
+        animatorManager.animator.SetBool("isInvincible", true);
+        animatorManager.PlayTargetAnimation("Dodge", true, true, true);
     }
 }

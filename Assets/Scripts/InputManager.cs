@@ -101,7 +101,7 @@ public class InputManager : MonoBehaviour
         if (dodge_Input)
         {
             dodge_Input = false;
-            playerMovement. HandleDodge ();
+            playerMovement.HandleDodge();
         }
 
     }

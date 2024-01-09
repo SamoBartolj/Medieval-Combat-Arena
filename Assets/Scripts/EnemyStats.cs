@@ -40,7 +40,8 @@ public class EnemyStats : MonoBehaviour
             {
                 currentHealth = 0;
                 animator.Play("Death01");
-                // HANDLE ENEMY DEATH
+
+                Destroy(gameObject, 3);
             }
         }
     }

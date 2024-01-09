@@ -1998,7 +1998,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2789,9 +2789,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.23863983
-  m_Height: 1.8385305
+  m_Height: 1.7718472
   m_Direction: 1
-  m_Center: {x: 0.0016593933, y: 0.917573, z: 0}
+  m_Center: {x: 0.0016593933, y: 0.9509146, z: 0}
 --- !u!54 &514432988
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2835,12 +2835,13 @@ MonoBehaviour:
   inAirTimer: 0
   leapingVelocity: 2
   fallingVelocity: 35
-  rayCastHeightOffSet: 0.2
+  rayCastHeightOffSet: 0.31
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   isGrounded: 1
   isJumping: 0
+  isInvincible: 0
   movementSpeed: 5
   rotationSpeed: 15
   jumpHeight: 0.8
@@ -4735,6 +4736,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Knight_02_Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 155034, guid: b2d86ece2910c424eb07c39d2772e780, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 435448, guid: b2d86ece2910c424eb07c39d2772e780, type: 3}
       propertyPath: m_LocalPosition.x
       value: -62.76
@@ -4779,6 +4784,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.78
       objectReference: {fileID: 0}
+    - target: {fileID: 9589344, guid: b2d86ece2910c424eb07c39d2772e780, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2663a7c6af9b13c44bb6455b9d4e824f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9341,6 +9350,7 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 65
+  defaultPosition: 20
   cameraCollisionOffSet: 0.2
   minCollisionOffSet: 0.2
   cameraCollisionRadius: 0.2
@@ -9352,7 +9362,7 @@ MonoBehaviour:
   lookAngle: 0
   pivotAngle: 0
   minPivotAngle: -35
-  maxPivotAngle: 40
+  maxPivotAngle: 35
 --- !u!4 &2031622427
 Transform:
   m_ObjectHideFlags: 0

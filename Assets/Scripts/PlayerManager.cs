@@ -44,6 +44,9 @@ public class PlayerManager : MonoBehaviour
         isUsingRootMotion = animator.GetBool("isUsingRootMotion");
 
         playerMovement.isJumping = animator.GetBool("isJumping");
-        animator.SetBool("isGrounded", playerMovement.isGrounded); 
+        animator.SetBool("isGrounded", playerMovement.isGrounded);
+
+        playerMovement.isInvincible = animator.GetBool("isInvincible");
+        animator.SetBool("isInvincible", playerMovement.isInvincible);
     }
 }

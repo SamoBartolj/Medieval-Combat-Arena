@@ -6,14 +6,15 @@ public class CameraManager : MonoBehaviour
 {
     InputManager inputManager;
 
-    public Transform targetTransform;
-    public Transform cameraPivot;
-    public Transform cameraTransform;
-    public LayerMask collisionLayers;
-    private float defaultPosition;
-    private Vector3 cameraFollowVelocity = Vector3.zero;
-    private Vector3 cameraVectorPosition;
+    [Header("References")]
+    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Transform cameraPivot;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private LayerMask collisionLayers;
 
+
+    [Header("Camera Settings")]
+    public float defaultPosition;
     public float cameraCollisionOffSet = 0.2f;
     public float minCollisionOffSet = 0.2f;
     public float cameraCollisionRadius = 0.2f;
@@ -22,6 +23,10 @@ public class CameraManager : MonoBehaviour
     public float cameraPivotSpeed = 2f;
     public float sensitivityX = 2f;
     public float sensitivityY = 2f;
+
+    
+    private Vector3 cameraFollowVelocity = Vector3.zero;
+    private Vector3 cameraVectorPosition;
 
     public float lookAngle;
     public float pivotAngle;
@@ -33,7 +38,7 @@ public class CameraManager : MonoBehaviour
     {
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         inputManager = FindObjectOfType<InputManager>();
-        cameraTransform = Camera.main.transform; 
+        cameraTransform = Camera.main.transform;
         defaultPosition = cameraTransform.localPosition.z;
     }
 
@@ -80,7 +85,7 @@ public class CameraManager : MonoBehaviour
         if (Physics.SphereCast(cameraPivot.transform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(tartgetPosition), collisionLayers))
         {
             float distance = Vector3.Distance(cameraPivot.position, hit.point);
-            tartgetPosition =- (distance - cameraCollisionOffSet);
+            tartgetPosition = -(distance - cameraCollisionOffSet);
 
         }
 

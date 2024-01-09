@@ -11,10 +11,12 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBar;
 
     AnimatorManager animatorManager;
+    PlayerMovement playerMovement;
 
     private void Awake()
     {
         animatorManager = GetComponentInChildren<AnimatorManager>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Start()
@@ -33,17 +35,25 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage; 
-        healthBar.SetCurrentHealth(currentHealth);
-
-        animatorManager.PlayTargetAnimation("TakeDamage01", true);
-
-        if (currentHealth <= 0) 
+        if (!playerMovement.isInvincible)
         {
-            currentHealth = 0;
+            currentHealth -= damage;
+            healthBar.SetCurrentHealth(currentHealth);
 
-            animatorManager.PlayTargetAnimation("Death01", true);
-            //HANDLE PLAYER DEATH
+            animatorManager.PlayTargetAnimation("TakeDamage01", true);
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+
+                animatorManager.PlayTargetAnimation("Death01", true);
+                //HANDLE PLAYER DEATH
+
+                Destroy(gameObject, 3);
+            }
         }
+
+
+
     }
 }
