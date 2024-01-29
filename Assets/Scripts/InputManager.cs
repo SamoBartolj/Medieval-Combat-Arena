@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerMovement playerMovement;
     PlayerControls playerControls;
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
 
@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        animatorManager = GetComponent<AnimatorManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
@@ -71,7 +71,8 @@ public class InputManager : MonoBehaviour
         HandleMovmentInput();
         HandleJumpingInput();
         HandleDodgeInput();
-        HandleAttackInput();    }
+        HandleAttackInput();    
+    }
 
 
     private void HandleMovmentInput()
@@ -84,7 +85,7 @@ public class InputManager : MonoBehaviour
 
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        animatorManager.UpdateAnimatorValues(0, moveAmount);
+        playerAnimatorManager.UpdateAnimatorValues(0, moveAmount);
     }
 
     private void HandleJumpingInput()

@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : CharachterStats
 {
-    public int healthLevel = 10;
-    public int maxHealth;
-    public int currentHealth;
-
     public HealthBar healthBar;
 
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
     PlayerMovement playerMovement;
 
     private void Awake()
     {
-        animatorManager = GetComponentInChildren<AnimatorManager>();
+        playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
         playerMovement = GetComponent<PlayerMovement>();
     }
 
@@ -40,13 +36,13 @@ public class PlayerStats : MonoBehaviour
             currentHealth -= damage;
             healthBar.SetCurrentHealth(currentHealth);
 
-            animatorManager.PlayTargetAnimation("TakeDamage01", true);
+            playerAnimatorManager.PlayTargetAnimation("TakeDamage01", true);
 
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
 
-                animatorManager.PlayTargetAnimation("Death01", true);
+                playerAnimatorManager.PlayTargetAnimation("Death01", true);
                 //HANDLE PLAYER DEATH
 
                 Destroy(gameObject, 3);

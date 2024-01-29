@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerManager playerManager;
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
     InputManager inputManager;
 
     Vector3 moveDirection;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         playerManager = GetComponent<PlayerManager>();
-        animatorManager = GetComponent<AnimatorManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         inputManager = GetComponent<InputManager>();
         playerRigidBody = GetComponent<Rigidbody>();
         cameraObject = Camera.main.transform;
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!playerManager.isInteracting)
             {
-                animatorManager.PlayTargetAnimation("Falling", true);
+                playerAnimatorManager.PlayTargetAnimation("Falling", true);
             }
 
             inAirTimer = inAirTimer + Time.deltaTime;
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isGrounded && !playerManager.isInteracting)
             {
-                animatorManager.PlayTargetAnimation("Landing", true);
+                playerAnimatorManager.PlayTargetAnimation("Landing", true);
 
                 Vector3 landingPosition = hit.point + Vector3.up * rayCastHeightOffSet;
                 transform.position = landingPosition;
@@ -168,8 +168,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            animatorManager.animator.SetBool("isJumping", true);
-            animatorManager.PlayTargetAnimation("Jumping", false);
+            playerAnimatorManager.animator.SetBool("isJumping", true);
+            playerAnimatorManager.PlayTargetAnimation("Jumping", false);
             Debug.Log("Skace");
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
@@ -185,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
             return;
 
 
-        animatorManager.animator.SetBool("isInvincible", true);
-        animatorManager.PlayTargetAnimation("Dodge", true, true, true);
+        playerAnimatorManager.animator.SetBool("isInvincible", true);
+        playerAnimatorManager.PlayTargetAnimation("Dodge", true, true, true);
     }
 }

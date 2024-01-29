@@ -8,21 +8,21 @@ namespace SO
     public class PlayerAttacker : MonoBehaviour
     {
 
-        AnimatorManager animatorManager;
+        PlayerAnimatorManager playerAnimatorManager;
 
         private void Awake()
         {
-            animatorManager = GetComponentInChildren<AnimatorManager>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
         }
 
         public void HandleLightAttack(WeaponItem weapon)
         {
-            animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
+            playerAnimatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
-            animatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
+            playerAnimatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
         }
     }
 }
