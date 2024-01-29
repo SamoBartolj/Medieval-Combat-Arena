@@ -57,6 +57,8 @@ public class EnemyMovementManager : MonoBehaviour
 
     public void HandleMoveToTarget()
     {
+        Debug.Log("HandleMoveToTarget called");
+
         if (currentTarget == null)
         {
             Debug.LogError("currentTarget is null in HandleMoveToTarget method.");
@@ -68,7 +70,7 @@ public class EnemyMovementManager : MonoBehaviour
         float viewableAngle = Vector3.Angle(targetDierciton, transform.forward);
 
         //If performing an action, stop movement
-        if(enemyManager.isPerforimingAction)
+        if(enemyManager.isPerformingAction)
         {
             enemyAnimatorManager.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             navmeshAgent.enabled = false;
@@ -112,7 +114,7 @@ public class EnemyMovementManager : MonoBehaviour
         }
 
         //Rotate manually
-        if (enemyManager.isPerforimingAction)
+        if (enemyManager.isPerformingAction)
         {
             Vector3 direction = currentTarget.transform.position - transform.position;
             direction.y = 0;
