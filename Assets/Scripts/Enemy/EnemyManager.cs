@@ -2,59 +2,75 @@ using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
     EnemyMovementManager enemyMovementManager;
     EnemyAnimatorManager enemyAnimatorManager;
-    public bool isPerformingAction;
+    EnemyStats enemyStats;
 
-    public EnemyAttackAction[] enemyAttacks;
-    public EnemyAttackAction currentAttack;
+    public NavMeshAgent navmeshAgent;
+    public State currentState;
+    public CharachterStats currentTarget;
+    public Rigidbody enemyRigidBody;
+
 
     [Header("A.I. Settings")]
+    public bool isPerformingAction;
     public float detectionRadius = 20;
+
     //FOV
     public float maxDetectionAngle = 50;
     public float minDetectionAngle = -50;
 
     public float currentRecoveryTime = 0;
+    public float distanceFromTarget;
+    public float rotationSpeed = 15f;
+    public float maxAttackRange = 1.5f;
+    public float viewableAngle;
 
     private void Awake()
     {
         enemyMovementManager = GetComponent<EnemyMovementManager>();
         enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
+        navmeshAgent = GetComponentInChildren<NavMeshAgent>();
+        enemyStats = GetComponent<EnemyStats>();
+        enemyRigidBody = GetComponentInChildren<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        enemyRigidBody.isKinematic = false;
     }
 
     private void Update()
     {
         HandleRecoveryTimer();
+        CalculateDistanceFromTarget();
     }
 
     private void FixedUpdate()
     {
-        HandleCurrentAction();
+        HandleStateMachine();
     }
 
-    private void HandleCurrentAction()
+    private void HandleStateMachine()
     {
-        if(enemyMovementManager.currentTarget != null)
+     if(currentState != null)
         {
-            enemyMovementManager.distanceFromTarget = Vector3.Distance(enemyMovementManager.currentTarget.transform.position, transform.position);
-        }
+            State nextState = currentState.Tick(this, enemyStats, enemyAnimatorManager);
 
-        if (enemyMovementManager.currentTarget == null)
-        {
-            enemyMovementManager.HandleDetection();
+            if (nextState != null)
+            {
+                SwitchToNextState(nextState);
+            }
         }
-        else if (enemyMovementManager.distanceFromTarget > enemyMovementManager.stoppingDistance)
-        {
-            enemyMovementManager.HandleMoveToTarget();
-        }
-        else if(enemyMovementManager.distanceFromTarget < enemyMovementManager.stoppingDistance)
-        {
-            AttackTarget();
-        }
+    }
+
+    private void SwitchToNextState(State state)
+    {
+        currentState = state;
     }
 
     private void HandleRecoveryTimer()
@@ -73,77 +89,13 @@ public class EnemyManager : MonoBehaviour
         }  
     }
 
-    private void AttackTarget()
+    private void CalculateDistanceFromTarget()
     {
-        if(isPerformingAction)
+        if(currentTarget != null)
         {
-            return;
-        }
-
-        if(currentAttack == null)
-        {
-            GetNewAttack();
-        }
-        else
-        {
-            isPerformingAction = true;
-            currentRecoveryTime = currentAttack.recoveryTime;
-            enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
-            currentAttack = null;
-        }
+            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+        } 
     }
 
-    private void GetNewAttack()
-    {
-        Vector3 targetsDirection = enemyMovementManager.currentTarget.transform.position - transform.position;
-        float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
-        enemyMovementManager.distanceFromTarget = Vector3.Distance(enemyMovementManager.currentTarget.transform.position, transform.position);
 
-        int maxScore = 0;
-
-        for(int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-            if(enemyMovementManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack 
-                && enemyMovementManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-            {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                {
-                    maxScore += enemyAttackAction.attackScore;
-                }
-                    
-            }
-        }
-
-        int randomValue = Random.Range(0, maxScore);
-        int tempScore = 0;
-
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-            if (enemyMovementManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && enemyMovementManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-            {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                {
-                    if(currentAttack != null)
-                    {
-                        return;
-                    }
-
-                    tempScore += enemyAttackAction.attackScore;
-
-                    if(tempScore > randomValue)
-                    {
-                        currentAttack = enemyAttackAction;
-                    }
-                }
-
-            }
-        }
-    }
 }

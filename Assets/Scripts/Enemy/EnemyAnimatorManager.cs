@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class EnemyAnimatorManager : AnimatorManager
 {
-    EnemyMovementManager enemyMovementManager;
+    EnemyManager enemyManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemyMovementManager = GetComponentInParent<EnemyMovementManager>();
+        enemyManager = GetComponent<EnemyManager>();
     }
 
     private void OnAnimatorMove()
     {
         float delta = Time.deltaTime;
-        enemyMovementManager.enemyRigidBody.drag = 0;
+        enemyManager.enemyRigidBody.drag = 0;
         Vector3 deltaPosition = animator.deltaPosition;
         deltaPosition.y = 0;
         Vector3 velocity = deltaPosition / delta;
-        enemyMovementManager.enemyRigidBody.velocity = velocity;
+        enemyManager.enemyRigidBody.velocity = velocity;
     }
 }
