@@ -23,16 +23,9 @@ public class IdleState : State
 
             if (charachterStats != null)
             {
-                // CHECK FOR TEAM ID
-
-                Vector3 targetDirection = charachterStats.transform.position - transform.position;
-                float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-
-                if (viewableAngle > enemyManager.minDetectionAngle && viewableAngle < enemyManager.maxDetectionAngle)
-                {
-                    enemyManager.currentTarget = charachterStats;
-                    Debug.Log("Target detected: " + enemyManager.currentTarget.name);
-                }
+                enemyManager.currentTarget = charachterStats;
+                Debug.Log("Target detected: " + enemyManager.currentTarget.name);
+                break; 
             }
         }
         #endregion

@@ -75,6 +75,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleRecoveryTimer()
     {
+
         if (currentRecoveryTime > 0)
         {
             currentRecoveryTime -= Time.deltaTime;
@@ -86,7 +87,7 @@ public class EnemyManager : MonoBehaviour
             {
                 isPerformingAction = false;
             }
-        }  
+        }
     }
 
     private void CalculateDistanceFromTarget()
