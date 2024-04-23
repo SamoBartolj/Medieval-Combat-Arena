@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3331052807596538806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.674
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.958171
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.90901
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451191545482731373, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992295118027860031, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Name
+      value: Player Blue Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064321338232, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064321338232, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a63bccabf87a5cc47886ea20de646d88, type: 2}
+    - target: {fileID: 4529817064321342492, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064321342492, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064321342492, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69eed74b945b42540a171bf4a8d34fc3, type: 2}
+    - target: {fileID: 4529817064321517954, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064321517954, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 396f7abc9b4541548968e21a142b20d0, type: 2}
+    - target: {fileID: 4529817064326613168, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064326781686, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529817064326801976, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3859333ceb8100e41960e19e6ce1a93e, type: 3}
