@@ -58,8 +58,16 @@ namespace SO
 
         public void OpenRightHandDamageCollider()
         {
-            rightHandDamageCollider.EnableDamageCollider();
+            if (rightHandDamageCollider != null)
+            {
+                rightHandDamageCollider.EnableDamageCollider();
+            }
+            else
+            {
+                Debug.LogWarning("Right hand damage collider is null.");
+            }
         }
+
 
         public void OpenLeftHandDamageCollider()
         {

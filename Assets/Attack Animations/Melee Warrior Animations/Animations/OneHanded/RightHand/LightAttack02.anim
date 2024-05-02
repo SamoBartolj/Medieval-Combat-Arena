@@ -16127,7 +16127,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: -0.5679077
+        value: 0.024789276
         inSlope: -0.07340306
         outSlope: -0.07340306
         tangentMode: 0
@@ -65390,7 +65390,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: -0.5679077
+        value: 0.024789276
         inSlope: -0.07340306
         outSlope: -0.07340306
         tangentMode: 0
@@ -97347,7 +97347,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.4
+  - time: 0.36666667
     functionName: OpenRightHandDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}

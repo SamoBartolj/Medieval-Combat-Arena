@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleStateMachine()
     {
-     if(currentState != null)
+        if (currentState != null)
         {
             State nextState = currentState.Tick(this, enemyStats, enemyAnimatorManager);
 

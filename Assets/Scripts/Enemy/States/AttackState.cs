@@ -16,7 +16,7 @@ public class AttackState : State
         float viewableAngle = Vector3.Angle(targetDierciton, transform.forward);
 
         if (enemyManager.isPerformingAction)
-        {   
+        {
             return combatStanceState;
         }
 
@@ -58,57 +58,17 @@ public class AttackState : State
 
     private void GetNewAttack(EnemyManager enemyManager)
     {
-        Vector3 targetsDirection = enemyManager.currentTarget.transform.position - transform.position;
-        float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
-        enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
-
-        int maxscore = 0;
-
-        for (int i = 0; i < enemyAttacks.Length; i++)
+        if (enemyAttacks.Length > 0)
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-            if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-            {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                {
-                    maxscore += enemyAttackAction.attackScore;
-                }
-
-            }
+            int randomIndex = Random.Range(0, enemyAttacks.Length);
+            currentAttack = enemyAttacks[randomIndex];
+            Debug.Log("New attack assigned: " + currentAttack.name); 
         }
-
-        int randomvalue = Random.Range(0, maxscore);
-        int tempscore = 0;
-
-        for (int i = 0; i < enemyAttacks.Length; i++)
+        else
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-            if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-            {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                {
-                    if (currentAttack != null)
-                    {
-                        return;
-                    }
-
-                    tempscore += enemyAttackAction.attackScore;
-
-                    if (tempscore > randomvalue)
-                    {
-                        currentAttack = enemyAttackAction;
-                    }
-                }
-
-            }
+            Debug.Log("No valid attacks found."); 
         }
-
     }
+
 
 }
