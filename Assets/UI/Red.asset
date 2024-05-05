@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1fe6b60463c5246921ffe9b4a0e686, type: 3}
-  m_Name: Black
+  m_Script: {fileID: 11500000, guid: 54d21f6ece3b46479f0c328f8c6007e0, type: 3}
+  m_Name: Red
   m_EditorClassIdentifier: 
-  playerName: Black
-  playerPrefab: {fileID: 5542759640937678434, guid: 504fe0fde88ccc54fb36dea1e6dd2047, type: 3}
-  playerImage: {fileID: 21300000, guid: b5d2c5b7fe76afb40b7b3b0474fef39a, type: 3}
+  colorMode: 3
+  topLeft: {r: 0.5, g: 0, b: 0, a: 1}
+  topRight: {r: 0.5019608, g: 0, b: 0, a: 1}
+  bottomLeft: {r: 1, g: 0, b: 0, a: 1}
+  bottomRight: {r: 1, g: 0, b: 0, a: 1}

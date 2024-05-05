@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,12 @@ using UnityEngine;
 public class PlayerStats : CharachterStats
 {
     public HealthBar healthBar;
+    public EndOfGame endOfGame;
 
     PlayerAnimatorManager playerAnimatorManager;
     PlayerMovement playerMovement;
+
+    
 
     private void Awake()
     {
@@ -43,9 +47,16 @@ public class PlayerStats : CharachterStats
                 currentHealth = 0;
 
                 playerAnimatorManager.PlayTargetAnimation("Death01", true);
-                //HANDLE PLAYER DEATH
+                Destroy(gameObject, 2);
 
-                Destroy(gameObject, 3);
+                if (endOfGame != null)
+                {
+                    endOfGame.isDead = true;
+                }
+                else
+                {
+                    Console.WriteLine("endOfGame is null");
+                }
             }
         }
 

@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Arena index out of bounds!");
+            Debug.LogError("Arena index out of bounds!" + arenaIndex + arenas.Length);
         }
     }
 
@@ -105,7 +105,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player index out of bounds!");
+            Debug.LogError("Player index out of bounds!" + playerIndex + arenas.Length);
         }
     }
 
@@ -114,6 +114,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        PlayerPrefs.SetInt("PlayerIndex", playerIndex);
+
         SceneManager.LoadScene(arenas[arenaIndex].buildIndex);
     }
 
