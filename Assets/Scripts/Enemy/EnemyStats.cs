@@ -43,12 +43,12 @@ public class EnemyStats : CharachterStats
 
     private void Die()
     {
+        Destroy(gameObject);
+
         if (animator != null)
         {
             animator.Play("Death01");
         }
-
-        Destroy(gameObject, 2);
 
         if (waveSpawner != null)
         {

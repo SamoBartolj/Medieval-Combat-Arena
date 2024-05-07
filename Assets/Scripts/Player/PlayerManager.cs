@@ -8,8 +8,7 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     CameraManager cameraManager;
     PlayerMovement playerMovement;
-
-
+    public PauseManager pauseManager;
 
     public bool isInteracting;
     public bool isUsingRootMotion;
@@ -24,7 +23,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
+        if (!pauseManager.isPaused)
+        {
+            inputManager.HandleAllInputs();
+        }
+        
     }
 
 

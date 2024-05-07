@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackState : State
 {
     public CombatStanceState combatStanceState;
+    public AudioManager audioManager;
 
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
@@ -43,6 +44,14 @@ public class AttackState : State
                         enemyManager.isPerformingAction = true;
                         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
                         currentAttack = null;
+                        if (audioManager != null)
+                        {
+                            audioManager.PlayLightAttackAudio();
+                        }
+                        else
+                        {
+                            Debug.LogError("audioManager is null!");
+                        }
                         return combatStanceState;
                     }
                 }

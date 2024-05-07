@@ -9,6 +9,7 @@ namespace SO
     {
 
         PlayerAnimatorManager playerAnimatorManager;
+        public AudioManager audioManager;
 
         private void Awake()
         {
@@ -18,6 +19,7 @@ namespace SO
         public void HandleLightAttack(WeaponItem weapon)
         {
             playerAnimatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
+            audioManager.PlayLightAttackAudio();
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)

@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
 
+
     public Vector2 movmentInput;
     public Vector2 cameraInput;
 
@@ -112,6 +113,7 @@ public class InputManager : MonoBehaviour
         if(lightAttack_input)
         {
             playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+
         }
 
         if (heavyAttack_input)

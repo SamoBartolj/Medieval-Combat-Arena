@@ -4,22 +4,28 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Arenas[] arenas;
-    [SerializeField] private PlayersSO[] players;
+    [Header ("Audio")]
+    public AudioSource clickAudio;
 
+    [Header ("Arenas")]
+    [SerializeField] private Arenas[] arenas;
     public Image arenaImage;
     public TMP_Text arenaName;
+    public int arenaIndex;
 
+    [Header("Players")]
+    [SerializeField] private PlayersSO[] players;
     public Image playerImage;
     public TMP_Text playerName;
-
-
-    public int arenaIndex;
     public int playerIndex;
+
+    public TMP_Text enemiesKilled;
+    private string fileName = "enemiesKilled.txt";
 
     private void Awake()
     {
@@ -32,6 +38,7 @@ public class MainMenu : MonoBehaviour
     {
         SetArenaData();
         SetPlayerData();
+        DisplayEnemiesKilled();
     }
 
 
@@ -73,7 +80,7 @@ public class MainMenu : MonoBehaviour
 
     #endregion
 
-    #region
+    #region Choose Player
 
     public void ChoosePlayerIndexAdd()
     {
@@ -109,7 +116,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    #endregion
+#endregion
 
 
     public void PlayGame()
@@ -123,5 +130,33 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("QUIT");
         Application.Quit();
+    }
+
+    public void PlayClickAudio()
+    {
+        clickAudio.Play();
+    }
+
+    public void DisplayEnemiesKilled()
+    {
+        if (File.Exists(fileName))
+        {
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                string line = reader.ReadLine();
+                if (line != null)
+                {
+                    enemiesKilled.text = line;
+                }
+                else
+                {
+                    Debug.LogWarning("File is empty.");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("File doesn't exist");
+        }
     }
 }

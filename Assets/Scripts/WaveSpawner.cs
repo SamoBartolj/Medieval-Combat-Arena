@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using TMPro;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
@@ -10,12 +13,15 @@ public class WaveSpawner : MonoBehaviour
 
     public int baseHealth = 100; 
     public int healthIncrement = 10;
-    public int waveInt;
+    public int enemiesKilled;
+
+    public TextMeshProUGUI enemiesKilledText;
 
     private void Start()
     {
         SpawnEnemy();
-        waveInt = 1;
+        enemiesKilled += 1;
+
     }
 
     public void SpawnEnemy()
@@ -36,10 +42,13 @@ public class WaveSpawner : MonoBehaviour
         newEnemy.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         newEnemy.SetActive(true);
 
+        enemiesKilledText.text = enemiesKilled.ToString();
     }
 
     public void OnEnemyDeath()
     {
         SpawnEnemy();
+        enemiesKilled += 1;
     }
+
 }
