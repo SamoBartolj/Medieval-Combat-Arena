@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaName: Courtyard
   buildIndex: 1
-  arenaImage: {fileID: 21300000, guid: 4b47d6de9515a5f49aac4e22369c9454, type: 3}
+  arenaImage: {fileID: 21300000, guid: 1bb7a04e6e840e248b92e7fcb3b3b27d, type: 3}

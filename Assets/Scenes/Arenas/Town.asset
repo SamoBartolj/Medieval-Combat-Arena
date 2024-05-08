@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd995eb03de05b74db36c5a68c0856cf, type: 3}
-  m_Name: Arena2
+  m_Name: Town
   m_EditorClassIdentifier: 
-  arenaName: Arena2
+  arenaName: Town
   buildIndex: 2
-  arenaImage: {fileID: 21300000, guid: 03b1e359670c0cd46b3028923c6f741b, type: 3}
+  arenaImage: {fileID: 21300000, guid: 1cf4ffca540c598418e2e23659ce30d0, type: 3}

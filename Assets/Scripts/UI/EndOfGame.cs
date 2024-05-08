@@ -12,6 +12,7 @@ public class EndOfGame : MonoBehaviour
     public GameObject healthBar;
     public WaveSpawner waveSpawner;
 
+    public TMP_Text enemiesKilledText;
     public bool isDead = false;
 
     private string saveFileName = "enemiesKilled.txt";
@@ -65,16 +66,20 @@ public class EndOfGame : MonoBehaviour
     }
 
 
+
+
     private void ShowDeathScreen()
     {
         if (isDead)
         {
             healthBar.SetActive(false);
             deathScreen.SetActive(true);
+            enemiesKilledText.text = "You have killed " + waveSpawner.enemiesKilled + " enemies!";
             SaveTopScore();
 
         }
     }
+
 
     public void RestartScene()
     {

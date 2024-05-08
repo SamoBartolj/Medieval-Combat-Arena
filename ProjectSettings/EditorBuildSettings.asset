@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Arenas/Courtyard.unity
     guid: b5adf75e6e117274689de6f2f6ff939e
   - enabled: 1
-    path: Assets/Scenes/Arenas/Arena2.unity
-    guid: 6ce0ddaedc6f60c4d8a3be03cb43b340
+    path: Assets/Scenes/Arenas/Town.unity
+    guid: 3a50486ea30018c478044b9739c8204d
   m_configObjects: {}

@@ -4361,8 +4361,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1777510473}
     - target: {fileID: 1472614419439280793, guid: dfc15e3a385fc7e478f8481ce80b9f26, type: 3}
+      propertyPath: rotationSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472614419439280793, guid: dfc15e3a385fc7e478f8481ce80b9f26, type: 3}
       propertyPath: viewableAngle
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472614419439280793, guid: dfc15e3a385fc7e478f8481ce80b9f26, type: 3}
+      propertyPath: maxAttackRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4330595518607349481, guid: dfc15e3a385fc7e478f8481ce80b9f26, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6331,7 +6339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have survived X rounds
+  m_text: You have kiled X enemies.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -6677,6 +6685,7 @@ MonoBehaviour:
   deathScreen: {fileID: 1041303515}
   healthBar: {fileID: 213226480}
   waveSpawner: {fileID: 1322305742}
+  enemiesKilledText: {fileID: 674506650}
   isDead: 0
 --- !u!114 &752679544 stripped
 MonoBehaviour:
@@ -10079,7 +10088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1264771283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10466,11 +10475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 571946981}
   spawnPoint: {fileID: 1322305741}
-  endOfGame: {fileID: 0}
-  enemyStats: {fileID: 0}
-  charachterStats: {fileID: 0}
-  baseHealth: 100
-  healthIncrement: 10
+  endOfGame: {fileID: 715179840}
   enemiesKilled: 0
   enemiesKilledText: {fileID: 1582356197}
 --- !u!1001 &1326780672
@@ -15005,8 +15010,8 @@ MonoBehaviour:
   cameraFollowSpeed: 0.2
   cameraLookSpeed: 2
   cameraPivotSpeed: 2
-  sensitivityX: 1.5
-  sensitivityY: 1.5
+  sensitivityX: 0.5
+  sensitivityY: 0.5
   lookAngle: 0
   pivotAngle: 0
   minPivotAngle: -35
