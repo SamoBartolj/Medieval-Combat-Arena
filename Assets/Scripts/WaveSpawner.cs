@@ -7,7 +7,6 @@ public class WaveSpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform spawnPoint;
-    public EndOfGame endOfGame;
 
     public int enemiesKilled = 0;
 

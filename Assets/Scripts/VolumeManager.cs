@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class VolumeManager : MonoBehaviour
 {
+    [Header("Sound")]
     public Slider musicSlider;
     public Slider effectsSlider;
 

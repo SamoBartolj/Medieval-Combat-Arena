@@ -10,9 +10,6 @@ public class PursueTargetState : State
 
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     { 
-        // Chase the target
-        // If within attack range, switch to combat stance state
-        // if target is out of range, return this state and contuinue to chase target
 
         #region Handle Move To Target
 

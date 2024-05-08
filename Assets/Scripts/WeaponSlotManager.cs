@@ -34,8 +34,8 @@ namespace SO
         {
             if (isLeft)
             {
-                leftHandSlot.LoadWeaponModel(weaponItem);
-                LoadLeftWeaponDamageCollider();
+                //leftHandSlot.LoadWeaponModel(weaponItem);
+                //LoadLeftWeaponDamageCollider();
             }
             else
             {

@@ -42,6 +42,11 @@ public class CameraManager : MonoBehaviour
         defaultPosition = cameraTransform.localPosition.z;
     }
 
+    private void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     public void HandleAllCameraMovement()
     {
         FollowTarget();

@@ -6,7 +6,8 @@ public class AnimatorManager : MonoBehaviour
 {
     public Animator animator;
 
-    public void PlayTargetAnimation(string targetAnimation, bool isInteracting, bool useRootMotion = false, bool isInvincible = false)
+    public void PlayTargetAnimation(string targetAnimation, bool isInteracting, 
+        bool useRootMotion = false, bool isInvincible = false)
     {
         animator.SetBool("isInteracting", isInteracting);
         animator.SetBool("isUsingRootMotion", useRootMotion);
